@@ -114,3 +114,22 @@ function localDescCreated(desc) {
     onError
   );
 }
+
+function generateQRCode() {
+  // Get the current page's URL
+  const currentPageUrl = window.location.href;
+  
+  // Create a QR code with the current page's URL
+  const qr = qrcode(0, 'M');
+  qr.addData(currentPageUrl);
+  qr.make();
+
+  // Render the QR code image
+  const qrCodeImage = qr.createImgTag(5); // Adjust size as needed
+
+  // Display the QR code image
+  const qrCodeContainer = document.getElementById('qrCodeContainer');
+  if (qrCodeContainer) {
+    qrCodeContainer.innerHTML = qrCodeImage;
+  }
+}
